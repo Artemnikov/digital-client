@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import style from "../src/app/page.module.css"
 
 const index = () => {
   const [size, setSize] = useState({})
@@ -11,14 +12,17 @@ const index = () => {
   if (!size?.width) return <></>
   
   return (
-    <>
+    <div className={style.main}>
+      <div className={style.login}>
+        <p>LOGIN</p>
+      </div>
       <Image
-        src="/login_screen.jpg"
+        src="/layout_login_static.png"
         alt="asdasd"
         width={size.width}
         height={size.height}
       />
-    </>
+    </div>
   )
 }
 
