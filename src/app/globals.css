@@ -8,6 +8,10 @@ html, body {
   box-sizing: border-box;
 }
 
+.mokoto1 {
+  font-family: Mokoto3, sans-serif !important;
+}
+
 @font-face {
   font-family: 'Mokoto';
   src: url('/fonts/Mokoto/Mokoto Glitch.ttf') format('truetype');
