@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { loginUser, registerUser } from "@services/user"
 
 const createUserPayload = (field) => (state, action) => {
     const { payload } = action
@@ -17,6 +18,10 @@ const userDataSlice = createSlice({
     initialState,
     reducers: {
         setUserData: createUserPayload("data"),
+        loginUser: (state, action) => {
+            const data = loginUser(action.payload);
+            state.data = data;
+        }
 })
 
 export const {

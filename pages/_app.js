@@ -3,12 +3,27 @@ import '../src/app/page.module.scss'
 import { Provider } from 'react-redux';
 import { store } from '../state/store';
 import '../src/app/globals.css'
+import { ToastContainer } from 'react-toastify';
 
 function MyApp(props) {
   const { Component, pageProps } = props
   return (
     <Provider store={store}>
       <Layout>
+        <ToastContainer
+          position="top-right"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable={false}
+          pauseOnHover
+          style={{
+            fontWeight: 'bold',
+          }}
+        />
         <Component {...pageProps} />
       </Layout>
     </Provider>
