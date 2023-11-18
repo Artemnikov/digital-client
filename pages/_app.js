@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from '../state/store';
 import '../src/app/globals.css'
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp(props) {
   const { Component, pageProps } = props
@@ -17,7 +18,7 @@ function MyApp(props) {
           newestOnTop={false}
           closeOnClick
           rtl={false}
-          pauseOnFocusLoss
+          pauseOnFocusLos
           draggable={false}
           pauseOnHover
           style={{

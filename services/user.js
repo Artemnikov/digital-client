@@ -1,10 +1,13 @@
 import axios from "@utils/axios"
+import { toast } from "react-toastify"
 
 export const registerUser = async (body) => {
     try {
         const { response } = await axios.post("registration")
+        toast.success("registration was successfull")
         return response
     } catch (error) {
+        toast.error("failed to register. Try again next year")
         console.error("failed to register user, ERR:", error)
     }
 }

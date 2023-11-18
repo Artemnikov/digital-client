@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import style from "../src/app/page.module.scss"
 import { TextField, Button, Container, Typography } from '@mui/material';
 import { useDispatch } from "react-redux";
-import { registerUser } from "@services/user"
+import { loginUser, registerUser } from "@services/user"
 import { toast } from "react-toastify";
 
 const index = () => {
@@ -20,21 +20,24 @@ const index = () => {
     }));
  };
 
+  const validateFields = () => {
+    let errorList = []
+    if (!formData.email || formData.email === "") errorList.push("enter an email")
+    if (!formData.username || formData.username === "") errorList.push("enter an email")
+    if (!formData.password || formData.password === "") errorList.push("enter an password")
+    toast.error(<p>{errorList.map(item => item)}</p>)
+    return errorList.length > 0 ? false : true
+  }
+
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log(formData)
-    // dispatch login
+    dispatch(loginUser())
   };
 
   const handleRegister = (event) => {
     event.preventDefault()
-    try {
-      registerUser(formData)
-      toast.success("user created successfully")
-    } catch (err) {
-      toast.error("failed to register, please try again sometime next year")
-      console.error(err.message)
-    }
+    if (!validateFields()) return
+    registerUser(formData)
   }
 
   const handleOpenLogin = () => {
