@@ -22,7 +22,7 @@ const index = () => {
 
   const validateFields = () => {
     let errorList = []
-    if (!formData.email || formData.email === "") errorList.push("enter an email")
+    if (!formData.user_email || formData.user_email === "") errorList.push("enter an email")
     if (!formData.username || formData.username === "") errorList.push("enter an email")
     if (!formData.password || formData.password === "") errorList.push("enter an password")
     errorList.length > 0 && toast.error(<p>{errorList.map(item => item)}</p>)
@@ -82,10 +82,10 @@ const index = () => {
               />
               <TextField 
                 fullWidth 
-                name="email" 
+                name="user_email" 
                 label="email" 
                 variant="outlined" 
-                value={formData.email} 
+                value={formData.user_email} 
                 onChange={handleChange} 
                 margin="normal"
               />
