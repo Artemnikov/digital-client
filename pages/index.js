@@ -25,7 +25,7 @@ const index = () => {
     if (!formData.email || formData.email === "") errorList.push("enter an email")
     if (!formData.username || formData.username === "") errorList.push("enter an email")
     if (!formData.password || formData.password === "") errorList.push("enter an password")
-    toast.error(<p>{errorList.map(item => item)}</p>)
+    errorList.length > 0 && toast.error(<p>{errorList.map(item => item)}</p>)
     return errorList.length > 0 ? false : true
   }
 

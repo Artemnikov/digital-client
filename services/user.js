@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 
 export const registerUser = async (body) => {
     try {
-        const { response } = await axios.post("registration")
+        const { response } = await axios.post("registration", { body })
         toast.success("registration was successfull")
         return response
     } catch (error) {
