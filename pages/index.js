@@ -73,10 +73,10 @@ const index = () => {
           <form onSubmit={handleRegister}>
               <TextField 
                 fullWidth 
-                name="username" 
-                label="Username" 
+                name="user_email" 
+                label="Email" 
                 variant="outlined" 
-                value={formData.username} 
+                value={formData.user_email} 
                 onChange={handleChange} 
                 margin="normal"
               />
