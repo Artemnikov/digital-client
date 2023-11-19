@@ -31,7 +31,7 @@ const index = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    dispatch(loginUser())
+    dispatch(loginUser(formData))
   };
 
   const handleRegister = (event) => {
