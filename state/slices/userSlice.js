@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from "@services/user"
+import { loadUser, loginUser, registerUser } from "@services/user"
 
 const createUserPayload = (field) => (state, action) => {
     const { payload } = action
@@ -21,7 +21,11 @@ const userDataSlice = createSlice({
         loginUser: (state, action) => {
             const data = loginUser(action.payload);
             state.data = data;
-        }
+        },
+        loadUser: state => {
+            const userData = loadUser()
+            state.data = userData
+        },
 })
 
 export const {
