@@ -4,7 +4,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@utils/*": ["utils/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
+      "@state/*": ["state/*"]
     }
   },
   "exclude": ["node_modules"]

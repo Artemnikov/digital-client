@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loadUser, loginUser, registerUser } from "@services/user"
+import { loadUserPromise, registerUserPromise } from "@services/user"
+import Router from 'next/router';
+import { toast } from 'react-toastify';
 
 const createUserPayload = (field) => (state, action) => {
     const { payload } = action
@@ -11,6 +13,7 @@ const createSimplePayload = (field) => (state, action) => void (state[field] = a
 
 const initialState = {
     data: { isLoading: true },
+    isLoading: false,
 };
 
 const userDataSlice = createSlice({
@@ -18,17 +21,41 @@ const userDataSlice = createSlice({
     initialState,
     reducers: {
         setUserData: createUserPayload("data"),
-        loginUser: (state, action) => {
-            const data = loginUser(action.payload);
-            state.data = data;
+        registerUser: (state, action) => {
+            try {
+                state.isLoading = true;
+                registerUserPromise(action.payload);
+            } catch (error) {
+                console.error("failed to register user, ERR: ", error)
+            }
+            state.isLoading = false;
+        },
+        loginUser: async (state, action) => {
+            try {
+                const data = await axios.post("users/login", { ...action.payload })
+                state.data = data;
+                Router.push("/home")
+            } catch (error) {
+                console.error("failed to login user, ERR: ", error)
+                toast.error("Oops. Cannot log you in")
+            }
         },
         loadUser: state => {
-            const userData = loadUser()
-            state.data = userData
+            try {
+                state.isLoading = true
+                const userData = loadUserPromise()
+                state.data = userData
+            } catch (error) {
+                console.error("failed to pull user data, ERR: ", error)
+            }
         },
+    }
 })
 
 export const {
     setUserData,
+    registerUser,
+    loginUser,
+    loadUser
 } = userDataSlice.actions
 export default userDataSlice.reducer

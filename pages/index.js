@@ -3,13 +3,14 @@ import { useEffect, useState } from "react"
 import style from "../src/app/page.module.scss"
 import { TextField, Button, Container, Typography } from '@mui/material';
 import { useDispatch } from "react-redux";
-import { loginUser, registerUser } from "@services/user"
+import { loginUser, registerUser } from "@state/slices/userSlice"
 import { toast } from "react-toastify";
 
 const index = () => {
   const [loginFormOpen, setLoginFormOpen] = useState(false)
   const [registerFormOpen, setRegisterFormOpen] = useState(false)
   const [formData, setFormData] = useState({})
+  
   const dispatch = useDispatch()
 
   const handleChange = (event) => {
@@ -23,7 +24,7 @@ const index = () => {
   const validateFields = () => {
     let errorList = []
     if (!formData.user_email || formData.user_email === "") errorList.push("enter an email")
-    if (!formData.username || formData.username === "") errorList.push("enter an email")
+    if (!formData.user_name || formData.user_name === "") errorList.push("enter an username")
     if (!formData.password || formData.password === "") errorList.push("enter an password")
     errorList.length > 0 && toast.error(<p>{errorList.map(item => item)}</p>)
     return errorList.length > 0 ? false : true
@@ -37,7 +38,7 @@ const index = () => {
   const handleRegister = (event) => {
     event.preventDefault()
     if (!validateFields()) return
-    registerUser(formData)
+    dispatch(registerUser(formData))
   }
 
   const handleOpenLogin = () => {
@@ -73,10 +74,10 @@ const index = () => {
           <form onSubmit={handleRegister}>
               <TextField 
                 fullWidth 
-                name="user_email" 
-                label="Email" 
+                name="user_name" 
+                label="Username" 
                 variant="outlined" 
-                value={formData.user_email} 
+                value={formData.user_name} 
                 onChange={handleChange} 
                 margin="normal"
               />

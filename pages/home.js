@@ -1,9 +1,9 @@
 import React from 'react'
+import style from "../src/app/home.module.scss"
 
 const home = () => {
   return (
-    <div>
-        
+    <div className={style.main}>
     </div>
   )
 }
