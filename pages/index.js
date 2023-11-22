@@ -24,7 +24,7 @@ const index = () => {
   const validateFields = () => {
     let errorList = []
     if (!formData.user_email || formData.user_email === "") errorList.push("enter an email")
-    if (!formData.user_name || formData.user_name === "") errorList.push("enter an username")
+    if (!formData.username || formData.username === "") errorList.push("enter an username")
     if (!formData.password || formData.password === "") errorList.push("enter an password")
     errorList.length > 0 && toast.error(<p>{errorList.map(item => item)}</p>)
     return errorList.length > 0 ? false : true
@@ -38,7 +38,11 @@ const index = () => {
   const handleRegister = (event) => {
     event.preventDefault()
     if (!validateFields()) return
-    dispatch(registerUser(formData))
+    try {
+      dispatch(registerUser(formData))
+    } catch (err) {
+      toast.error("Oops something went wrong, Firing QA..")
+    }
   }
 
   const handleOpenLogin = () => {
@@ -74,10 +78,10 @@ const index = () => {
           <form onSubmit={handleRegister}>
               <TextField 
                 fullWidth 
-                name="user_name" 
+                name="username" 
                 label="Username" 
                 variant="outlined" 
-                value={formData.user_name} 
+                value={formData.username} 
                 onChange={handleChange} 
                 margin="normal"
               />

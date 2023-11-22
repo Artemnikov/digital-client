@@ -21,14 +21,10 @@ const userDataSlice = createSlice({
     initialState,
     reducers: {
         setUserData: createUserPayload("data"),
-        registerUser: (state, action) => {
-            try {
-                state.isLoading = true;
-                registerUserPromise(action.payload);
-            } catch (error) {
-                console.error("failed to register user, ERR: ", error)
-            }
-            state.isLoading = false;
+        registerUser: async (state, action) => {
+            state.isLoading = true;
+            registerUserPromise(action.payload);
+            state.isLoading = false; 
         },
         loginUser: async (state, action) => {
             try {
