@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loadUserPromise, registerUserPromise } from "@services/user"
+import { loadUserPromise, registerUserPromise, loginUserPromise } from "@services/user"
 import Router from 'next/router';
 import { toast } from 'react-toastify';
 
@@ -22,18 +22,26 @@ const userDataSlice = createSlice({
     reducers: {
         setUserData: createUserPayload("data"),
         registerUser: async (state, action) => {
-            state.isLoading = true;
-            registerUserPromise(action.payload);
-            state.isLoading = false; 
+            try {
+                state.isLoading = true;
+                await registerUserPromise(action.payload);
+                state.isLoading = false; 
+            } catch (err) {
+                const { response } = err
+                toast.error(response.data)
+            }
         },
         loginUser: async (state, action) => {
             try {
-                const data = await axios.post("users/login", { ...action.payload })
-                state.data = data;
+                const response = await loginUserPromise(action.payload)
+                console.log(response)
+                if (!response) return
+                state.data = response.data;
                 Router.push("/home")
             } catch (error) {
-                console.error("failed to login user, ERR: ", error)
-                toast.error("Oops. Cannot log you in")
+                const { response } = error
+                console.log(response)
+                response?.data && toast.error(response.data)
             }
         },
         loadUser: state => {

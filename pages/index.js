@@ -38,11 +38,7 @@ const index = () => {
   const handleRegister = (event) => {
     event.preventDefault()
     if (!validateFields()) return
-    try {
-      dispatch(registerUser(formData))
-    } catch (err) {
-      toast.error("Oops something went wrong, Firing QA..")
-    }
+    dispatch(registerUser(formData))
   }
 
   const handleOpenLogin = () => {
@@ -117,9 +113,18 @@ const index = () => {
               <TextField 
                 fullWidth 
                 name="username" 
-                label="Username" 
+                label="username" 
                 variant="outlined" 
                 value={formData.username} 
+                onChange={handleChange} 
+                margin="normal"
+              />
+              <TextField 
+                fullWidth 
+                name="user_email" 
+                label="email" 
+                variant="outlined" 
+                value={formData.user_email} 
                 onChange={handleChange} 
                 margin="normal"
               />
@@ -134,7 +139,7 @@ const index = () => {
                 margin="normal"
               />
               <Button className="mokoto1" type="submit" variant="contained" color="primary">
-                Submit
+                Log In
               </Button>
           </form>
         </Container>

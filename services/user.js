@@ -2,8 +2,11 @@ import axios from "@utils/axios"
 import { toast } from "react-toastify"
 
 export const registerUserPromise = async (body) => {
-    const { response } = await axios.post("users/registration", { ...body })
-    toast.success("registration was successfull")
+    return await axios.post("users/registration", { ...body })
+}
+
+export const loginUserPromise = async (body) => {
+    const response =  await axios.post("users/login", { ...body })
     return response
 }
 
