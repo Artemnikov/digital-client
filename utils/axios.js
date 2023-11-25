@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_URL = process.env.API_URL || "http://localhost:8080/"
+const API_URL = process.env.API_URL || "https://digital-server-5szy7kxnra-uc.a.run.app/"
 
 const instance = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 5000,
 });
 
 instance.defaults.headers.common['Authorization'] = `Bearer ${typeof window !== "undefined" && localStorage.getItem("access_token")}`;
