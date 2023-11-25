@@ -15,11 +15,11 @@ const home = () => {
     },
     {
       name: "LEADER BOARD",
-      action: () => { // TODO - make it open a dialog }
+      action: () => { } // TODO - make it open a dialog
     },
     {
       name: "PLAYER ЧТО ТО ТАМ",
-      action: () => { // I have no idea what is that }
+      action: () => { } // I have no idea what is that
     },
     {
       name: "PRACTICE",
@@ -27,13 +27,16 @@ const home = () => {
     }
   ]
 
+  console.log(buttonList)
   return (
     <div className={style.main}>
-      {buttonList.map(item => {
-        <button onClick={item.action}>
-          {item.name}
-        </button>
-      })}
+      <div className={style.navigation}>
+        {buttonList.map(item => (
+          <button className={style.button}>
+            {item.name}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
