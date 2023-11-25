@@ -25,6 +25,7 @@ const userDataSlice = createSlice({
             try {
                 state.isLoading = true;
                 await registerUserPromise(action.payload);
+                toast.success("Registration complete!")
                 state.isLoading = false; 
             } catch (err) {
                 toast.error(err)
