@@ -1,6 +1,6 @@
 import Layout from '../src/app/layout'
 import '../src/app/page.module.scss'
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { store } from '../state/store';
 import '../src/app/globals.css'
 import { ToastContainer } from 'react-toastify';
@@ -10,9 +10,10 @@ import Router from 'next/router';
 
 function MyApp(props) {
   const { Component, pageProps } = props
-
+  
   useEffect(() => {
     if (!localStorage.getItem("access_token")) Router.push("/")
+    else Router.push("/home")
   }, [])
 
   return (

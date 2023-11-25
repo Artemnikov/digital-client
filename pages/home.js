@@ -27,7 +27,6 @@ const home = () => {
     }
   ]
 
-  console.log(buttonList)
   return (
     <div className={style.main}>
       <div className={style.navigation}>
