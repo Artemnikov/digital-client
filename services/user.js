@@ -6,8 +6,7 @@ export const registerUserPromise = async (body) => {
 }
 
 export const loginUserPromise = async (body) => {
-    const response =  await axios.post("users/login", { ...body })
-    return response
+    return await axios.post("users/login", { ...body })
 }
 
 export const loadUserPromise = async () => {

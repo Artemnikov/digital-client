@@ -37,7 +37,8 @@ const userDataSlice = createSlice({
                 const response = await loginUserPromise(action.payload)
                 console.log(response)
                 if (!response) return
-                state.data = response.data;
+                localStorage.setItem("access_token", response.data.access)
+                localStorage.setItem("refresh_token", response.data.refresh)
                 Router.push("/home")
             } catch (error) {
                 const { response } = error
