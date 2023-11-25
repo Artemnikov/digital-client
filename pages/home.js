@@ -32,7 +32,7 @@ const home = () => {
     <div className={style.main}>
       <div className={style.navigation}>
         {buttonList.map(item => (
-          <button className={style.button}>
+          <button className={style.button} key={item.name}>
             {item.name}
           </button>
         ))}
