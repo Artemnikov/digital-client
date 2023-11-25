@@ -27,8 +27,8 @@ const userDataSlice = createSlice({
                 await registerUserPromise(action.payload);
                 state.isLoading = false; 
             } catch (err) {
-                const { response } = err
-                toast.error(response.data)
+                toast.error(err)
+                err?.response?.data && toast.error(err.response.data)
             }
         },
         loginUser: async (state, action) => {
