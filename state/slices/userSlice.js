@@ -24,7 +24,9 @@ const userDataSlice = createSlice({
         registerUser: async (state, action) => {
             try {
                 state.isLoading = true;
-                await registerUserPromise(action.payload);
+                const response = await registerUserPromise(action.payload);
+                localStorage.setItem("access_token", response.access``)
+                localStorage.setItem("refresh_token", response.access)
                 toast.success("Registration complete!")
                 Router.push("/home")
                 state.isLoading = false; 
