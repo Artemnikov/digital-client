@@ -13,7 +13,6 @@ function MyApp(props) {
   
   useEffect(() => {
     if (!localStorage.getItem("access_token")) Router.push("/")
-    else Router.push("/home")
   }, [])
 
   return (

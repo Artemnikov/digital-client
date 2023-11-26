@@ -49,7 +49,7 @@ const home = () => {
     <div className={style.main}>
       <div className={style.navigation}>
         {buttonList.map(item => (
-          <button className={style.button} key={item.name}>
+          <button onClick={item.action} className={style.button} key={item.name}>
             <Image src={"/btn_home_empty.png"} alt="button" width={500} height={500} />
             <p>{item.name}</p>
           </button>
