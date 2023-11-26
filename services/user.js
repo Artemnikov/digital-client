@@ -11,7 +11,7 @@ export const loginUserPromise = async (body) => {
 
 export const loadUserPromise = async () => {
     try {
-        return { response } = await axios.get("users/me")
+        return await axios.get("users/me")
     } catch (error) {
         console.error("failed to load user, ERR: ", error)
     }

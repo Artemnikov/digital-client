@@ -26,6 +26,7 @@ const userDataSlice = createSlice({
                 state.isLoading = true;
                 await registerUserPromise(action.payload);
                 toast.success("Registration complete!")
+                Router.push("/home")
                 state.isLoading = false; 
             } catch (err) {
                 toast.error(err)
@@ -35,8 +36,7 @@ const userDataSlice = createSlice({
         loginUser: async (state, action) => {
             try {
                 const response = await loginUserPromise(action.payload)
-                console.log(response)
-                if (!response) return
+                if (!response) return toast.error("Server Error. Try again later")
                 localStorage.setItem("access_token", response.data.access)
                 localStorage.setItem("refresh_token", response.data.refresh)
                 Router.push("/home")
@@ -46,12 +46,14 @@ const userDataSlice = createSlice({
                 response?.data && toast.error(response.data)
             }
         },
-        loadUser: state => {
+        loadUser: async state => {
             try {
                 state.isLoading = true
-                const userData = loadUserPromise()
-                state.data = userData
+                const response = await loadUserPromise()
+                console.log(response)
+                state.data = response.data
             } catch (error) {
+                console.log(error)
                 console.error("failed to pull user data, ERR: ", error)
             }
         },

@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from "../src/app/home.module.scss"
 import Router from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadUser } from '@state/slices/userSlice';
+import Image from 'next/image';
 
 const home = () => {
-
   const buttonList = [
     {
       name: "PVP",
@@ -27,12 +29,29 @@ const home = () => {
     }
   ]
 
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.user)
+
+  useEffect(() => {
+    dispatch(loadUser())
+  }, [])
+
+
+  if (currentUser.isLoading) {
+    return (
+      <div className={style.main}>
+        <h1>Loading...</h1>
+      </div>
+    )
+  }
+
   return (
     <div className={style.main}>
       <div className={style.navigation}>
         {buttonList.map(item => (
           <button className={style.button} key={item.name}>
-            {item.name}
+            <Image src={"/btn_home_empty.png"} alt="button" width={500} height={500} />
+            <p>{item.name}</p>
           </button>
         ))}
       </div>

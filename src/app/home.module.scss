@@ -20,21 +20,32 @@
     gap: 10px;
 
     .button {
-        background-image: url("/btn_home_empty.png");
-        background-repeat: no-repeat;
-        background-size: cover;
         padding: 10% 5%;
         border: none;
+        position: relative;
+        overflow: hidden;
 
 
         font-size: 25px;
         color: red;
+        background: transparent;
         font-family: Mokoto2, sans-serif;
         white-space: nowrap;
         letter-spacing: 0;
 
         cursor: pointer;
         transition: background-color 0.3s ease;
+
+        img {
+            position: absolute;
+            top: -20%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        p {
+            z-index: 500 !important;
+        }
     }
     
     button:nth-of-type(2), button:nth-of-type(4) {
