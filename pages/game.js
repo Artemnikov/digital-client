@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../src/app/game.css"
+import { closeSocket, initSocket } from '@services/socket';
+import { useSelector } from 'react-redux';
 
 
 
@@ -7,6 +9,8 @@ const NumberGuessingGame = () => {
     const [guess, setGuess] = useState('');
     const [message, setMessage] = useState('Use the Force, guess a number between 1 and 100');
     const randomNumber = Math.floor(Math.random() * 100) + 1;
+    const gameData = useSelector(state => state.game)
+    console.log(gameData)
   
     const handleGuess = () => {
       const numGuess = parseInt(guess);
@@ -19,6 +23,11 @@ const NumberGuessingGame = () => {
       }
     };
   
+    useEffect(() => {
+      initSocket()
+      return () => closeSocket()
+    }, [])
+
     return (
       <div className="game-container">
         <h2 className="game-title">Jedi Number Guessing</h2>

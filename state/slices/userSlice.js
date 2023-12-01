@@ -17,7 +17,7 @@ const initialState = {
 };
 
 const userDataSlice = createSlice({
-    name: 'graphData',
+    name: 'userData',
     initialState,
     reducers: {
         setUserData: createUserPayload("data"),
