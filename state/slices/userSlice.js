@@ -48,16 +48,16 @@ const userDataSlice = createSlice({
                 response?.data && toast.error(response.data)
             }
         },
-        loadUser: async state => {
+        loadUser: async (state, action) => {
             try {
                 state.isLoading = true
                 const response = await loadUserPromise()
-                console.log(response)
                 state.data = response.data
             } catch (error) {
                 console.log(error)
                 console.error("failed to pull user data, ERR: ", error)
             }
+            state.isLoading = false
         },
     }
 })

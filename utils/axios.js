@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://digital-server-5szy7kxnra-uc.a.run.app/"
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://digital-server-5szy7kxnra-uc.a.run.app/"
+const API_URL = "https://digital-server-5szy7kxnra-uc.a.run.app/"
 
 const instance = axios.create({
   baseURL: API_URL,
