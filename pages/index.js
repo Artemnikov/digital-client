@@ -51,11 +51,6 @@ const index = () => {
     setRegisterFormOpen(true)
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem("access_token")
-    // TODO - dispatch a fetch user data
-  }, [])
-
   return (
     <div className={style.main}>
       {(!loginFormOpen || !registerFormOpen) && (

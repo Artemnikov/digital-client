@@ -1,46 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import "../src/app/game.css"
-import { closeSocket, initSocket } from '@services/socket';
-import { useSelector } from 'react-redux';
+import { loadHeroes, setHeroes } from '@state/slices/gameSlice'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import style from "../src/app/game.module.scss"
+import axios from "@utils/axios"
 
+const game = () => {
+  const dispatch = useDispatch()
+  const heroes = useSelector(state => state.game.heroes)
 
+  console.log(heroes)
+  useEffect(async () => {
+    const { data } = await axios.get("/data/champs")
+    dispatch(setHeroes(data))
+  }, [])
 
-const NumberGuessingGame = () => {
-    const [guess, setGuess] = useState('');
-    const [message, setMessage] = useState('Use the Force, guess a number between 1 and 100');
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
-    const gameData = useSelector(state => state.game)
-    console.log(gameData)
-  
-    const handleGuess = () => {
-      const numGuess = parseInt(guess);
-      if (numGuess === randomNumber) {
-        setMessage('Incredible! The Force is strong with you.');
-      } else if (numGuess < randomNumber) {
-        setMessage('Too low. Trust your feelings.');
-      } else {
-        setMessage('Too high. Feel the Force flowing through you.');
-      }
-    };
-  
-    useEffect(() => {
-      initSocket()
-      return () => closeSocket()
-    }, [])
-
+  if (!heroes || heroes.length === 0) {
     return (
-      <div className="game-container">
-        <h2 className="game-title">Jedi Number Guessing</h2>
-        <p className="game-message">{message}</p>
-        <input
-          className="game-input"
-          type="number"
-          value={guess}
-          onChange={(e) => setGuess(e.target.value)}
-        />
-        <button className="game-button" onClick={handleGuess}>Use the Force</button>
+      <div className={style.main}>
+        <h1>No heroes available</h1>
       </div>
-    );
-  };
+    )
+  }
 
-export default NumberGuessingGame;
+  return (
+    <div className={style.main}>
+      <div className={style.heroes}>
+        {heroes.map(hero => (
+          <div className={style.hero} key={hero.id}>
+            <h4>{hero.name}</h4>
+            <p>class: {hero.class}</p>
+            <p>hardware: {hero.hardware}</p>
+            <p>intellect: {hero.intellect}</p>
+            <button>Select</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default game

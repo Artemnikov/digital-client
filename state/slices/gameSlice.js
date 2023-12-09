@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from "@utils/axios"
 
 const createSimplePayload = (field) => (state, action) => void (state[field] = action.payload)
 
 const initialState = {
-    gameData: {
-        id: 0,
-        isLoading: true,
-    },
+    heroes: [],
+    gameData: {},
 };
 
 const userDataSlice = createSlice({
@@ -14,10 +13,12 @@ const userDataSlice = createSlice({
     initialState,
     reducers: {
         setGameData: createSimplePayload("gameData"),
+        setHeroes: createSimplePayload("heroes"),
     }
 })
 
 export const {
-    setGameData
+    setGameData,
+    setHeroes
 } = userDataSlice.actions
 export default userDataSlice.reducer

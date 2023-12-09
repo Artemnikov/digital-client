@@ -12,7 +12,7 @@ const createUserPayload = (field) => (state, action) => {
 const createSimplePayload = (field) => (state, action) => void (state[field] = action.payload)
 
 const initialState = {
-    data: { isLoading: true },
+    data: {},
     isLoading: false,
 };
 
@@ -23,8 +23,8 @@ const userDataSlice = createSlice({
         setUserData: createUserPayload("data"),
         registerUser: async (state, action) => {
             try {
-                state.isLoading = true;
                 const response = await registerUserPromise(action.payload);
+                state.isLoading = true;
                 localStorage.setItem("access_token", response.access``)
                 localStorage.setItem("refresh_token", response.access)
                 toast.success("Registration complete!")
@@ -38,24 +38,28 @@ const userDataSlice = createSlice({
         loginUser: async (state, action) => {
             try {
                 const response = await loginUserPromise(action.payload)
-                if (!response) return toast.error("Server Error. Try again later")
+                if (!response) return
                 localStorage.setItem("access_token", response.data.access)
                 localStorage.setItem("refresh_token", response.data.refresh)
                 Router.push("/home")
             } catch (error) {
                 const { response } = error
                 console.log(response)
+                toast.error("Failed to login", error.message)
                 response?.data && toast.error(response.data)
             }
         },
         loadUser: async (state, action) => {
             try {
-                state.isLoading = true
                 const response = await loadUserPromise()
+                state.isLoading = true
+                if (!response) return
                 state.data = response.data
+                Router.push("/home")
             } catch (error) {
                 console.log(error)
                 console.error("failed to pull user data, ERR: ", error)
+                Router.push("/")
             }
             state.isLoading = false
         },
