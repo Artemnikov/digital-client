@@ -2,27 +2,61 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 5%;
   height: 100vh;
   width: 100%;
 
+  * {
+    transition: all 0.1 ease;
+  }
+
   .heroes {
     display: flex;
-    flex-direction: column;
-    width: 50%;
-
+    align-items: center;
+    justify-content: flex-start;
+    width: 17.5%;
+    outline: 2px solid black;
+    flex-wrap: wrap;
+    padding-bottom: 1%;
+    box-sizing: content-box;
+    border-radius: 20px;
+    
     .hero {
       position: relative;
-    }
-
-    p {
-      padding-left: 1rem;
-    }
-    
-    button {
       cursor: pointer;
-      position: absolute;
-      right: 0;
-      top: 50%;
+      outline: 2px solid black;
+      width: 11vmin;
+      height: 11vmin;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      p {
+        position: absolute;
+        bottom: 5%;
+        font-size: 2vmin;
+      }
+    }
+  }
+
+  .picked_hero {
+    width: 70%;
+    height: 50%;
+    
+    .hero_stats {
+      display: flex;
+      gap: 5%;
+      flex-direction: row;
+      width: 30%;
+      height: 100%;
+
+      > div {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
     }
   }
 }

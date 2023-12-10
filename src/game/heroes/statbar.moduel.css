@@ -1,0 +1,18 @@
+/* ProgressBar.css */
+.progress-container {
+  width: 30px; /* width of the container */
+  height: 100%; /* full height of the container */
+  background-color: #e0e0de;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse; /* makes the bar start from the bottom */
+}
+
+.progress-bar {
+  width: 100%; /* fill the entire width of the container */
+  background-color: #4caf50; /* default green color */
+  text-align: center;
+  color: white;
+  transition: height 0.4s ease-in-out;
+}

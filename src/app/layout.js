@@ -1,3 +1,4 @@
+"use client"
 import { loadUser } from '@state/slices/userSlice'
 import { Inter } from 'next/font/google'
 import { useEffect } from 'react'

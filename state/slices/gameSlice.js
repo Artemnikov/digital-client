@@ -6,6 +6,7 @@ const createSimplePayload = (field) => (state, action) => void (state[field] = a
 const initialState = {
     heroes: [],
     gameData: {},
+    isLoading: false,
 };
 
 const userDataSlice = createSlice({
@@ -14,11 +15,13 @@ const userDataSlice = createSlice({
     reducers: {
         setGameData: createSimplePayload("gameData"),
         setHeroes: createSimplePayload("heroes"),
+        setIsLoadingGame: createSimplePayload("isLoading"),
     }
 })
 
 export const {
     setGameData,
-    setHeroes
+    setHeroes,
+    setIsLoadingGame
 } = userDataSlice.actions
 export default userDataSlice.reducer
