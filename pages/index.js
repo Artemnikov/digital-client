@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import style from "../src/app/page.module.scss"
 import { TextField, Button, Container, Typography } from '@mui/material';
 import { useDispatch } from "react-redux";

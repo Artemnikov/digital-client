@@ -51,15 +51,15 @@ const game = () => {
           <div className={style.hero_stats}>
             <Image src={`/${pickedHero.name}.png`} width={500} height={500} alt="picked hero" />
             <div>
-              <StatBar progress={50} />
+              <StatBar progress={50} color="green" />
               <p>Power</p>
             </div>
             <div>
-              <StatBar progress={pickedHero.hardware} />
+              <StatBar progress={pickedHero.hardware} color="red" />
               <p>Hardware</p>
             </div>
             <div>
-              <StatBar progress={pickedHero.intellect} />
+              <StatBar progress={pickedHero.intellect} color="blue" />
               <p>Intellect</p>
             </div>
           </div>

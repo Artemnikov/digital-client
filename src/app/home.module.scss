@@ -46,6 +46,10 @@
         p {
             z-index: 500 !important;
         }
+        &:hover {
+            transition: 0.2s all ease;
+            transform: translateX(2rem);
+        }
     }
     
     button:nth-of-type(2), button:nth-of-type(4) {

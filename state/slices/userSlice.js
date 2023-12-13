@@ -55,7 +55,6 @@ const userDataSlice = createSlice({
                 state.isLoading = true
                 if (!response) return
                 state.data = response.data
-                Router.push("/home")
             } catch (error) {
                 console.log(error)
                 console.error("failed to pull user data, ERR: ", error)
