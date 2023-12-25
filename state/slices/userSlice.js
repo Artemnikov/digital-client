@@ -45,7 +45,6 @@ const userDataSlice = createSlice({
             } catch (error) {
                 const { response } = error
                 console.log(response)
-                toast.error("Failed to login", error.message)
                 response?.data && toast.error(response.data)
             }
         },

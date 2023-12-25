@@ -1,16 +1,24 @@
-import { loadHeroes, setHeroes, setIsLoadingGame } from '@state/slices/gameSlice'
+import { setGameScreen, setHeroes, setIsLoadingGame } from '@state/slices/gameSlice'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from "../src/app/game.module.scss"
 import axios from "@utils/axios"
 import Image from 'next/image'
 import StatBar from '@/game/heroes/StatBar'
+import { GAME_SCREEN } from '@utils/constants'
+import SearchMatch from '@/game/search/SearchMatch'
+import GameBoard from '@/game/match/GameBoard'
 
 const game = () => {
   const dispatch = useDispatch()
+  
+  const [pickedHero, setPickedHero] = useState(null)
+
   const heroes = useSelector(state => state.game.heroes)
   const isGameLoading = useSelector(state => state.game.isLoading)
-  const [pickedHero, setPickedHero] = useState(null)
+  const gameScreen = useSelector(state => state.game.gameScreen)
+
+  const handleStartSearch = () => dispatch(setGameScreen(GAME_SCREEN.GAME_SEARCH));
 
   useEffect(async () => {
     dispatch(setIsLoadingGame(true))
@@ -33,6 +41,14 @@ const game = () => {
         <h1>No heroes available</h1>
       </div>
     )
+  }
+
+  if (gameScreen === GAME_SCREEN.GAME_SEARCH) {
+    return <SearchMatch />
+  }
+
+  if (gameScreen === GAME_SCREEN.GAME_BOARD) {
+    return <GameBoard />
   }
 
   return (
@@ -63,6 +79,7 @@ const game = () => {
               <p>Intellect</p>
             </div>
           </div>
+          <button className={style.play_btn} onClick={handleStartSearch}>Play</button>
         </div>
       )}
     </div>
