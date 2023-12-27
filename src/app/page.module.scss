@@ -13,7 +13,9 @@
 .register_btn {
   position: absolute;
   transform: translate(-50%, -50%);
-  bottom: 4%;
+  bottom: 4vh;
+  width: 24rem;
+  text-align: center;
   left: 50%;
   font-family: Mokoto3, sans-serif;
   cursor: pointer;
@@ -26,7 +28,7 @@
 
 .login_btn {
   position: absolute;
-  bottom: 15%;
+  bottom: 15vh;
   transform: translate(-50%, -50%);
   left: 50%;
   cursor: pointer;
@@ -41,7 +43,7 @@
   font-weight: 900;
   font-size: 20px;
   border-radius: 0.5rem;
-  padding: 1% 1%;
+  padding: 1em 1em;
 
   display: flex;
   align-items: center;
