@@ -1,14 +1,23 @@
 .main {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 5%;
   height: 100vh;
   width: 100%;
-  // background-image: url("/Duststorm\ Dynamo.png");
+  background-image: url("/screens/layout_home.png");
+  background-position: center;
+  background-size: contain;
+  z-index: 2;
+  color: wheat;
 
   * {
     transition: all 0.1 ease;
+  }
+
+  > div {
+    z-index: 3;
   }
 
   .heroes {
@@ -84,6 +93,23 @@
       border-radius: 1rem;
       margin: 0 auto;
       cursor: pointer;
+      background-color: red;
+      border: none;
+      outline: none;
+      font-family: Mokoto3;
+      font-size: 18px;
+      font-weight: bold;
     }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
   }
 }

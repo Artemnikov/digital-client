@@ -47,9 +47,7 @@ const game = () => {
     return <SearchMatch />
   }
 
-  if (gameScreen === GAME_SCREEN.GAME_BOARD) {
-    return <GameBoard />
-  }
+  if (gameScreen === GAME_SCREEN.GAME_BOARD) return <GameBoard />;
 
   return (
     <div className={style.main}>
@@ -65,7 +63,7 @@ const game = () => {
         <div className={style.picked_hero}>
           <h1>{pickedHero.class}: {pickedHero.name}</h1>
           <div className={style.hero_stats}>
-            <Image src={`/${pickedHero.name}.png`} width={500} height={500} alt="picked hero" />
+            <Image src={`/heroes/${pickedHero.name}.png`} width={500} height={500} alt="picked hero" />
             <div>
               <StatBar progress={50} color="green" />
               <p>Power</p>

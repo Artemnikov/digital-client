@@ -12,10 +12,10 @@ const GameBoard = () => {
     <div className={style.main}>
       <div className={style.board}>
         {gameData.map(item => (
-          <div key={item.id} className={style.tile}>
+          <div key={item.id} className={`${style.tile} ${!item.exist && style.hide}`}>
             {item.player_id === currentUser
-              ? <Image width={200} height={200} src="game/container_green.svg" />
-              : <Image width={200} height={200} src="/game/container_blue.svg" />
+              ? <Image className={`${item.orientation === 1 && style.flip}`} width={200} height={200} src="game/container_green.svg" />
+              : <Image className={`${item.orientation === 1 && style.flip}`} width={200} height={200} src="/game/container_blue.svg" />
             }
           </div>
         ))}

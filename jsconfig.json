@@ -5,7 +5,8 @@
       "@/*": ["src/*"],
       "@utils/*": ["utils/*"],
       "@services/*": ["services/*"],
-      "@state/*": ["state/*"]
+      "@state/*": ["state/*"],
+      "@public/*": ["public/*"]
     }
   },
   "exclude": ["node_modules"]
