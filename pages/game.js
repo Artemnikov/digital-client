@@ -54,7 +54,7 @@ const game = () => {
       <div className={style.heroes}>
         {heroes.map(hero => (
           <div className={style.hero} key={hero.id} onClick={() => setPickedHero(hero)}>
-            <Image src={`/${hero.name}.png`} alt="hero face" width={200} height={200} />
+            <Image src={`/heroes/${hero.name}.png`} alt="hero face" width={200} height={200} />
             <p>{hero.name}</p>
           </div>
         ))}
