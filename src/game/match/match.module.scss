@@ -12,9 +12,17 @@
             left: 0;
             bottom: 0;
 
-            img {
+            .heroBackground {
                 width: 20vw;
                 height: 40vh;
+            }
+
+            .pickedHero {
+                width: 10vw;
+                height: 20vh;
+                position: absolute;
+                bottom: 0;
+                left: 0;
             }
         }
         .power {

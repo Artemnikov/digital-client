@@ -1,4 +1,4 @@
-import { setGameScreen, setHeroes, setIsLoadingGame } from '@state/slices/gameSlice'
+import { setGameScreen, setHeroes, setIsLoadingGame, setPickedHero } from '@state/slices/gameSlice'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from "../src/app/game.module.scss"
@@ -12,12 +12,13 @@ import GameBoard from '@/game/match/GameBoard'
 const game = () => {
   const dispatch = useDispatch()
   
-  const [pickedHero, setPickedHero] = useState(null)
 
   const heroes = useSelector(state => state.game.heroes)
   const isGameLoading = useSelector(state => state.game.isLoading)
   const gameScreen = useSelector(state => state.game.gameScreen)
+  const pickedHero = useSelector(state => state.game.pickedHero)
 
+  const handlePickHero = (hero) => dispatch(setPickedHero(hero))
   const handleStartSearch = () => dispatch(setGameScreen(GAME_SCREEN.GAME_SEARCH));
 
   useEffect(async () => {
@@ -53,7 +54,7 @@ const game = () => {
     <div className={style.main}>
       <div className={style.heroes}>
         {heroes.map(hero => (
-          <div className={style.hero} key={hero.id} onClick={() => setPickedHero(hero)}>
+          <div className={style.hero} key={hero.id} onClick={() => handlePickHero(hero)}>
             <Image src={`/heroes/${hero.name}.png`} alt="hero face" width={200} height={200} />
             <p>{hero.name}</p>
           </div>

@@ -9,6 +9,7 @@ const initialState = {
     gameData: DEMO_MATCH,
     isLoading: false,
     gameScreen: GAME_SCREEN.HERO_PICK,
+    pickedHero: null,
 };
 
 const userDataSlice = createSlice({
@@ -18,7 +19,8 @@ const userDataSlice = createSlice({
         setGameData: createSimplePayload("gameData"),
         setHeroes: createSimplePayload("heroes"),
         setIsLoadingGame: createSimplePayload("isLoading"),
-        setGameScreen: createSimplePayload("gameScreen")
+        setGameScreen: createSimplePayload("gameScreen"),
+        setPickedHero: createSimplePayload("pickedHero"),
     }
 })
 
@@ -27,5 +29,6 @@ export const {
     setHeroes,
     setIsLoadingGame,
     setGameScreen,
+    setPickedHero,
 } = userDataSlice.actions
 export default userDataSlice.reducer

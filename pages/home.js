@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import style from "../src/app/home.module.scss"
 import Router from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
